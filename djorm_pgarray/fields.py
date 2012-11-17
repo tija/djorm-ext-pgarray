@@ -31,6 +31,8 @@ class ArrayFormField(forms.Field):
         return value
 class SetFormField(ArrayFormField):
     def to_python(self, value):
+        if value is None:
+            return value
         val = list(set(super(SetFormField, self).to_python(value)))
         val.sort()
         return val
