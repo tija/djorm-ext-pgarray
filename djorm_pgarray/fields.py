@@ -37,6 +37,10 @@ class SetFormField(ArrayFormField):
         val.sort()
         return val
 
+    def value_to_string(self, obj):
+        value = self._get_val_from_obj(obj)
+        return self.get_prep_value(value)
+
 def _cast_to_unicode(data):
     if isinstance(data, (list, tuple)):
         return [_cast_to_unicode(x) for x in data]
